@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tradedesk · by Eric Hong</title>
+  <meta name="description" content="Stock research by Eric Hong: buy and sell calls with price targets, stop losses, upcoming events and a weekly macro read." />
+  <meta name="author" content="Eric Hong" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    // Theme resolves before first paint: ?theme= → saved choice → OS setting.
+    (function () {
+      var d = document.documentElement, t = null, ok = function (v) { return v === 'light' || v === 'dark'; };
+      try { t = new URLSearchParams(location.search).get('theme'); } catch (e) {}
+      if (!ok(t)) { try { t = localStorage.getItem('td-theme'); } catch (e) {} }
+      if (!ok(t)) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      d.dataset.theme = t;
+      try { if (localStorage.getItem('td-rail') === '1') d.dataset.rail = 'collapsed'; } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<aside class="rail" aria-label="Primary">
+  <div class="rail-head">
+    <a class="mark" href="#/desk" aria-label="Tradedesk home">
+      <span class="mark-glyph" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="mark-word">Tradedesk</span>
+    </a>
+    <button class="icon-btn rail-collapse" id="rail-collapse" type="button" aria-label="Collapse sidebar">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.5 5.5 8l4.5 4.5"/></svg>
+    </button>
+  </div>
+
+  <button class="rail-search" type="button" data-open-search>
+    <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>
+    <span>Search stocks</span>
+    <kbd>⌘K</kbd>
+  </button>
+
+  <nav class="rail-nav">
+    <a href="#/desk" data-route="desk"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 4h11M2.5 8h11M2.5 12h11"/></svg><span>Trade desk</span></a>
+    <a href="#/catalysts" data-route="catalysts"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="3.5" width="11" height="10" rx="1.5"/><path d="M2.5 6.5h11M5.5 2v3M10.5 2v3"/></svg><span>Upcoming events</span></a>
+    <a href="#/macro" data-route="macro"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 13.5h11M3.5 11l3-3.5 2.5 2 4-5"/></svg><span>Macro</span></a>
+    <a href="#/blog" data-route="blog"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5h8a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1ZM5.5 6h5M5.5 8.5h5M5.5 11h3"/></svg><span>Blog</span></a>
+    <a href="#/method" data-route="method"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="5.5"/><path d="M8 7.5V11M8 5.2v.1"/></svg><span>Method</span></a>
+  </nav>
+
+  <div class="rail-foot">
+    <div class="rail-row">
+      <span class="byline">by <b>Eric Hong</b></span>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch light or dark theme">
+        <svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13 9.6A5.5 5.5 0 0 1 6.4 3a5.5 5.5 0 1 0 6.6 6.6Z"/></svg>
+        <svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="2.8"/><path d="M8 1.5v1.6M8 12.9v1.6M1.5 8h1.6M12.9 8h1.6M3.4 3.4l1.1 1.1M11.5 11.5l1.1 1.1M3.4 12.6l1.1-1.1M11.5 4.5l1.1-1.1"/></svg>
+      </button>
+    </div>
+  </div>
+</aside>
+
+<main class="main" id="main" tabindex="-1"></main>
+
+<div class="palette" id="palette" hidden>
+  <div class="palette-scrim" data-close-search></div>
+  <div class="palette-box" role="dialog" aria-modal="true" aria-label="Find a ticker">
+    <div class="palette-input">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>
+      <input id="palette-q" type="text" placeholder="Search by ticker, company or sector" autocomplete="off" spellcheck="false" />
+      <kbd>esc</kbd>
+    </div>
+    <ul class="palette-list" id="palette-list" role="listbox"></ul>
+  </div>
+</div>
+
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script src="data.js"></script>
+<script src="macro.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
