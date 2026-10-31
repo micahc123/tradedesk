@@ -5,7 +5,7 @@
 window.DESK = {
   asOf: "2026-10-30",
   asOfLabel: "Oct 30, 2026, 4:00pm ET",
-  author: "Eric Hong",
+  author: "Eric H",
 
   tape: [
     { k: "Fed funds", v: "3.75–4.00", u: "%", d: "+25bp on Oct 28" },

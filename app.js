@@ -1,4 +1,4 @@
-/* Tradedesk — by Eric Hong
+/* Tradedesk — by Eric H
    Vanilla, no build. Views behind a hash router (#/desk, #/catalysts, #/macro,
    #/macro/briefing, #/blog, #/method). Everything shown is derived from window.DESK in data.js. */
 (() => {
@@ -796,7 +796,7 @@
     const v = ["desk", "catalysts", "macro", "method", "blog"].includes(view) ? view : "desk";
     $$(".rail-nav a").forEach((a) => a.dataset.route === v ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
     const post = v === "blog" && arg && D.posts.find((p) => p.slug === arg);
-    document.title = (post ? post.title : { desk: "Trade desk", catalysts: "Upcoming events", macro: arg === "briefing" ? "Daily briefing" : "Macro", method: "Method", blog: "Blog" }[v]) + " · Tradedesk by Eric Hong";
+    document.title = (post ? post.title : { desk: "Trade desk", catalysts: "Upcoming events", macro: arg === "briefing" ? "Daily briefing" : "Macro", method: "Method", blog: "Blog" }[v]) + " · Tradedesk by Eric H";
 
     if (v === "desk" && current === "desk" && arg) { focusTicker(arg.toUpperCase()); return; }
     const key = v === "blog" ? "blog/" + (post ? post.slug : "") : v === "macro" ? "macro/" + (arg === "briefing" ? "briefing" : "") : v;
